@@ -1,0 +1,34 @@
+# ------start-------
+spring:
+  application:
+    name: datahub-admin
+  main:
+    banner-mode: 'off'
+  cloud:
+    config:
+      enabled: true
+      name: ${spring.application.name}
+      profile: dev
+      label: master
+      uri:
+      - http://10.32.15.71:8800
+# i18n
+i18n:
+  config:
+    enabled: true
+# logging
+logging:
+  path: /edpglobal/logs/${spring.application.name}
+  level:
+    root: info
+  edpglobal:
+    filter:
+      level: error
+      type: rabbitmq
+      resource-pool: edp-pool
+      tenant-name: EDP系统
+# ------end-------
+# mybatis
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
+  typeAliasesPackage: com.gouuse.datahub.admin.model
